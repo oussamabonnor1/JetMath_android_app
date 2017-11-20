@@ -10,62 +10,92 @@
         android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp"
         android:textAlignment="center"
         android:textColor="#FFF191"
         android:textSize="28sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@+id/score"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="108dp" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:text="Tap the correct Number !"
+        android:text="Click the correct Choice !"
         android:textAlignment="center"
         android:textColor="#FFF191"
         android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_below="@+id/score"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp" />
 
     <TextView
         android:id="@+id/resultText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:textAlignment="center"
         android:textColor="#FFF191"
         android:textSize="28sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/wrongButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#CC6758"
+        android:onClick="checkIfFalse"
+        android:text="Wrong"
         android:layout_alignBaseline="@+id/correctButton"
         android:layout_alignBottom="@+id/correctButton"
         android:layout_alignLeft="@+id/title"
-        android:layout_alignStart="@+id/title"
-        android:backgroundTint="#CC6758"
-        android:onClick="checkIfFalse"
-        android:text="Wrong" />
+        android:layout_alignStart="@+id/title" />
 
     <Button
         android:id="@+id/correctButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/title"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/title"
-        android:layout_marginBottom="79dp"
+        android:layout_marginBottom="62dp"
         android:layout_marginEnd="11dp"
         android:layout_marginRight="11dp"
         android:backgroundTint="#33AE53"
         android:onClick="checkIfTrue"
         android:text="Correct"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/title"
+        android:layout_alignEnd="@+id/title" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score: 0"
+        android:textAlignment="center"
+        android:textColor="#FFF191"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="17dp" />
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/correctButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
+        android:format="00:00"
+        android:textAlignment="center"
+        android:textColor="#FFF191"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

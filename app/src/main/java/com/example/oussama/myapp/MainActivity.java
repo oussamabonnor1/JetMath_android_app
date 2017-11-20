@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -12,9 +13,13 @@ public class MainActivity extends AppCompatActivity {
 
     TextView question;
     TextView resultText;
+    TextView scoreText;
     Button correctButton;
     Button wrongButton;
+    Chronometer chronometer;
     float result;
+    int score;
+    int bonus;
     boolean correctAnswer;
     boolean next;
 
@@ -24,10 +29,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         question = (TextView) findViewById(R.id.question);
         resultText = (TextView) findViewById(R.id.resultText);
+        scoreText = (TextView) findViewById(R.id.score);
         correctButton = (Button) findViewById(R.id.correctButton);
         wrongButton = (Button) findViewById(R.id.wrongButton);
+        chronometer = (Chronometer) findViewById(R.id.chronometer);
         next = false;
+        score = 0;
+        bonus = -11;
         generateQuestion();
+        chronometer.start();
     }
 
     public void generateQuestion() {
@@ -67,8 +77,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkIfTrue(View v) {
         if (!next) {
-            if (correctAnswer) resultText.setText("Yes !");
-            else resultText.setText("Man's not Hot !");
+            if (correctAnswer) {
+                bonus += 11;
+                score += 100 + bonus;
+                scoreText.setText("Score: " + score);
+                resultText.setText("Yes !");
+            } else {
+                bonus = -11;
+                resultText.setText("Man's not Hot !");
+            }
             correctButton.setText("Next one");
         } else {
             correctButton.setText("Correct");
@@ -79,8 +96,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkIfFalse(View v) {
         if (!next) {
-            if (!correctAnswer) resultText.setText("Yes !");
-            else resultText.setText("Man's not Hot !");
+            if (!correctAnswer) {
+                bonus += 11;
+                score += 100 + bonus;
+                scoreText.setText("Score: " + score);
+                resultText.setText("Yes !");
+            } else {
+                bonus = -11;
+                resultText.setText("Man's not Hot !");
+            }
             wrongButton.setText("Next one");
         } else {
             wrongButton.setText("Wrong");
