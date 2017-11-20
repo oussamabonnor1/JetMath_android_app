@@ -1,12 +1,10 @@
 package com.example.oussama.myapp;
 
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -65,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         String s = "Start !";
         switch (operation) {
             case 0:
-                result = firstNum + secondNum;
+                result = (firstNum + secondNum);
                 s = firstNum + " + " + secondNum + " =";
                 break;
             case 1:
@@ -84,11 +82,12 @@ public class MainActivity extends AppCompatActivity {
         question.setText(s);
         if (!correctAnswer) {
             int difference = new Random().nextInt(10);
-            boolean negatif = new Random().nextBoolean();
-            if (negatif) result -= difference;
+            boolean negative = new Random().nextBoolean();
+            if (negative) result -= difference;
             else result += difference;
         }
-        resultText.setText("" + result);
+        if (operation == 3) resultText.setText(String.format("%.1f", result));
+        else resultText.setText("" + (int) result);
     }
 
     public void checkIfTrue(View v) {
@@ -97,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 bonus += 11;
                 score += 100 + bonus;
                 scoreText.setText("Score: " + score);
-                resultText.setText("Yes !");
+                resultText.setText("Skrrra !");
             } else {
                 bonus = -11;
                 resultText.setText("Math's not Hot !");
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 bonus += 11;
                 score += 100 + bonus;
                 scoreText.setText("Score: " + score);
-                resultText.setText("Yes !");
+                resultText.setText("Skrrra");
             } else {
                 bonus = -11;
                 resultText.setText("Math's not Hot !");
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void endOfGame() {
-        title.setText("Game Over !\n Score: " + score);
+        title.setText("BOOM Game Over !\n Score: " + score);
         scoreText.setText("");
         resultText.setText("");
         question.setText("");

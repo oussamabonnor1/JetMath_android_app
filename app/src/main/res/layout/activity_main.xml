@@ -62,14 +62,14 @@
 
     <TextView
         android:id="@+id/clockText"
-        android:layout_width="wrap_content"
+        android:layout_width="56dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="19dp"
         android:text="00:00"
         android:textAlignment="center"
         android:textColor="#FFF191"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <TextView
