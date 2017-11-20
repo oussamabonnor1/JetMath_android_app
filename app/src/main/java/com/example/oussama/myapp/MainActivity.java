@@ -1,5 +1,7 @@
 package com.example.oussama.myapp;
 
+import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,12 +13,13 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    TextView title;
     TextView question;
     TextView resultText;
     TextView scoreText;
+    TextView clockText;
     Button correctButton;
     Button wrongButton;
-    Chronometer chronometer;
     float result;
     int score;
     int bonus;
@@ -27,17 +30,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        title = (TextView) findViewById(R.id.title);
         question = (TextView) findViewById(R.id.question);
         resultText = (TextView) findViewById(R.id.resultText);
         scoreText = (TextView) findViewById(R.id.score);
+        clockText = (TextView) findViewById(R.id.clockText);
         correctButton = (Button) findViewById(R.id.correctButton);
         wrongButton = (Button) findViewById(R.id.wrongButton);
-        chronometer = (Chronometer) findViewById(R.id.chronometer);
+        new CountDownTimer(60000, 1000) {
+            @Override
+            public void onTick(long l) {
+                int min = (int) (l / 1000) / 60;
+                int sec = (int) (l / 1000) % 60;
+                clockText.setText("" + min + ":" + sec);
+            }
+
+            @Override
+            public void onFinish() {
+                endOfGame();
+            }
+        }.start();
         next = false;
         score = 0;
         bonus = -11;
         generateQuestion();
-        chronometer.start();
     }
 
     public void generateQuestion() {
@@ -84,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 resultText.setText("Yes !");
             } else {
                 bonus = -11;
-                resultText.setText("Man's not Hot !");
+                resultText.setText("Math's not Hot !");
             }
             correctButton.setText("Next one");
         } else {
@@ -103,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 resultText.setText("Yes !");
             } else {
                 bonus = -11;
-                resultText.setText("Man's not Hot !");
+                resultText.setText("Math's not Hot !");
             }
             wrongButton.setText("Next one");
         } else {
@@ -113,4 +129,11 @@ public class MainActivity extends AppCompatActivity {
         next = !next;
     }
 
+    public void endOfGame() {
+        title.setText("Game Over !\n Score: " + score);
+        scoreText.setText("");
+        resultText.setText("");
+        question.setText("");
+        clockText.setText("");
+    }
 }
