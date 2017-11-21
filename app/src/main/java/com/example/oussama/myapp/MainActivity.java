@@ -1,10 +1,12 @@
 package com.example.oussama.myapp;
 
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -12,6 +14,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    AbsoluteLayout myLayout;
     TextView title;
     TextView question;
     TextView resultText;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        myLayout = (AbsoluteLayout) findViewById(R.id.myLayout);
         title = (TextView) findViewById(R.id.title);
         question = (TextView) findViewById(R.id.question);
         resultText = (TextView) findViewById(R.id.resultText);
@@ -57,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void generateQuestion() {
+        String color = makeRandomColor();
+        myLayout.setBackgroundColor(Color.parseColor(color));
         int firstNum = new Random().nextInt(100);
         int secondNum = new Random().nextInt(100);
         int operation = new Random().nextInt(4);
@@ -180,6 +186,20 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public String makeRandomColor() {
+        String color = "#";
+        for (int i = 0; i < 6; i++) {
+            String s = "" + new Random().nextInt(10);
+            if (new Random().nextBoolean()) color += s;
+            else {
+                int j = (new Random().nextInt(5) + 65);
+                char z = (char) j;
+                color += String.valueOf(z);
+            }
+        }
+        return color;
     }
 
 }
