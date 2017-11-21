@@ -1,5 +1,6 @@
 package com.example.oussama.myapp;
 
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     TextView clockText;
     Button correctButton;
     Button wrongButton;
+    MediaPlayer mp;
     float result;
     int score;
     int bonus;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTick(long l) {
                 int min = (int) (l / 1000) / 60;
                 int sec = (int) (l / 1000) % 60;
-                clockText.setText("" + min + ":" + sec);
+                clockText.setText(String.format("%02d:%02d",min,sec));
             }
 
             @Override
@@ -91,41 +93,62 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkIfTrue(View v) {
-        if (!next) {
-            if (correctAnswer) {
-                bonus += 11;
-                score += 100 + bonus;
-                scoreText.setText("Score: " + score);
-                resultText.setText("Skrrra !");
-            } else {
-                bonus = -11;
-                resultText.setText("Math's not Hot !");
-            }
-            correctButton.setText("Next one");
+
+        if (correctAnswer) {
+            mp = MediaPlayer.create(this, R.raw.right);
+            mp.start();
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    generateQuestion();
+                }
+            });
+            bonus += 11;
+            score += 100 + bonus;
+            scoreText.setText("Score: " + score);
+            resultText.setText("Skrrra !");
         } else {
-            correctButton.setText("Correct");
-            generateQuestion();
+            mp = MediaPlayer.create(this, R.raw.wrong);
+            mp.start();
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    generateQuestion();
+                }
+            });
+            bonus = -11;
+            resultText.setText("Math's not Hot !");
         }
-        next = !next;
+        correctButton.setText("Correct");
     }
 
     public void checkIfFalse(View v) {
-        if (!next) {
-            if (!correctAnswer) {
-                bonus += 11;
-                score += 100 + bonus;
-                scoreText.setText("Score: " + score);
-                resultText.setText("Skrrra");
-            } else {
-                bonus = -11;
-                resultText.setText("Math's not Hot !");
-            }
-            wrongButton.setText("Next one");
+        if (!correctAnswer) {
+            mp = MediaPlayer.create(this, R.raw.right);
+            mp.start();
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    generateQuestion();
+                }
+            });
+            bonus += 11;
+            score += 100 + bonus;
+            scoreText.setText("Score: " + score);
+            resultText.setText("Skrrra");
         } else {
-            wrongButton.setText("Wrong");
-            generateQuestion();
+            mp = MediaPlayer.create(this, R.raw.wrong);
+            mp.start();
+            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mediaPlayer) {
+                    generateQuestion();
+                }
+            });
+            bonus = -11;
+            resultText.setText("Math's not Hot !");
         }
-        next = !next;
+        wrongButton.setText("Wrong");
     }
 
     public void endOfGame() {
@@ -134,5 +157,24 @@ public class MainActivity extends AppCompatActivity {
         resultText.setText("");
         question.setText("");
         clockText.setText("");
+        correctButton.setText("Restart");
+        correctButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(getIntent());
+            }
+        });
+        wrongButton.setText("Quit");
+        wrongButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+    }
+
+    public void restart() {
+
     }
 }
