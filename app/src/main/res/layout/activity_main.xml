@@ -7,72 +7,6 @@
     android:background="#082543"
     tools:context="com.example.oussama.myapp.MainActivity">
 
-    <Button
-        android:id="@+id/wrongButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="420dp"
-        android:layout_x="92dp"
-        android:layout_y="404dp"
-        android:backgroundTint="#CC6758"
-        android:onClick="checkIfFalse"
-        android:text="Wrong" />
-
-    <Button
-        android:id="@+id/correctButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="420dp"
-        android:layout_x="209dp"
-        android:layout_y="405dp"
-        android:backgroundTint="#33AE53"
-        android:onClick="checkIfTrue"
-        android:text="Correct"
-        android:textColor="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="80dp"
-        android:layout_x="57dp"
-        android:layout_y="95dp"
-        android:text="Click the correct Choice !"
-        android:textAlignment="center"
-        android:textColor="#FFF191"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:layout_x="7dp"
-        android:layout_y="21dp"
-        android:text="Score: 0"
-        android:textAlignment="center"
-        android:textColor="#FFF191"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/clockText"
-        android:layout_width="56dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="19dp"
-        android:layout_x="303dp"
-        android:layout_y="24dp"
-        android:text="00:00"
-        android:textAlignment="center"
-        android:textColor="#FFF191"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
     <TextView
         android:id="@+id/resultText"
         android:layout_width="match_parent"
@@ -98,5 +32,83 @@
         android:textColor="#FFF191"
         android:textSize="28sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/correctButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="220dp"
+        android:layout_marginTop="420dp"
+        android:layout_x="227dp"
+        android:layout_y="444dp"
+        android:backgroundTint="#33AE53"
+        android:onClick="checkIfTrue"
+        android:text="Correct"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/wrongButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="420dp"
+        android:layout_x="81dp"
+        android:layout_y="444dp"
+        android:backgroundTint="#CC6758"
+        android:onClick="checkIfFalse"
+        android:text="Wrong" />
+
+    <TextView
+        android:id="@+id/clockText"
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="19dp"
+        android:layout_x="167dp"
+        android:layout_y="385dp"
+        android:text="00:00"
+        android:textAlignment="center"
+        android:textColor="#FFF191"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="80dp"
+        android:layout_x="57dp"
+        android:layout_y="125dp"
+        android:text="Click the correct Choice !"
+        android:textAlignment="center"
+        android:textColor="#FFF191"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_x="1dp"
+        android:layout_y="27dp"
+        android:text="Score: 0"
+        android:textAlignment="center"
+        android:textColor="#FFF191"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_x="59dp"
+        android:layout_y="71dp"
+        android:indeterminate="false"
+        android:max="60"
+        android:progress="0"
+        android:progressTint="#33AE53"/>
 
 </AbsoluteLayout>

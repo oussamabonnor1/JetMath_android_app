@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsoluteLayout;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -20,9 +21,11 @@ public class MainActivity extends AppCompatActivity {
     TextView resultText;
     TextView scoreText;
     TextView clockText;
+    ProgressBar progressBar;
     Button correctButton;
     Button wrongButton;
     MediaPlayer mp;
+    CountDownTimer countDownTimer;
     float result;
     int score;
     int bonus;
@@ -39,14 +42,19 @@ public class MainActivity extends AppCompatActivity {
         resultText = (TextView) findViewById(R.id.resultText);
         scoreText = (TextView) findViewById(R.id.score);
         clockText = (TextView) findViewById(R.id.clockText);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
         correctButton = (Button) findViewById(R.id.correctButton);
         wrongButton = (Button) findViewById(R.id.wrongButton);
+
+        next = false;
+        score = 0;
+        bonus = -11;
+
         new CountDownTimer(60000, 1000) {
             @Override
             public void onTick(long l) {
-                int min = (int) (l / 1000) / 60;
-                int sec = (int) (l / 1000) % 60;
-                clockText.setText(String.format("%02d:%02d", min, sec));
+
+                progressBar.setProgress((int) l / 1000);
             }
 
             @Override
@@ -54,9 +62,19 @@ public class MainActivity extends AppCompatActivity {
                 endOfGame();
             }
         }.start();
-        next = false;
-        score = 0;
-        bonus = -11;
+        countDownTimer = new CountDownTimer(6000,1000){
+            @Override
+            public void onTick(long l) {
+                int min = (int) l/1000/60;
+                int sec=  (int) l/1000%60;
+                clockText.setText(String.format("%02d:%02d",min,sec));
+            }
+            @Override
+            public void onFinish() {
+                generateQuestion();
+                this.start();
+            }
+        }.start();
         generateQuestion();
     }
 
@@ -116,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                generateQuestion();
+                countDownTimer.onFinish();
                 enablingButtons();
             }
         });
@@ -139,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {
-                generateQuestion();
+                countDownTimer.onFinish();
                 enablingButtons();
             }
         });
