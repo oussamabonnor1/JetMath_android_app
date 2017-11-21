@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             public void onTick(long l) {
                 int min = (int) (l / 1000) / 60;
                 int sec = (int) (l / 1000) % 60;
-                clockText.setText(String.format("%02d:%02d",min,sec));
+                clockText.setText(String.format("%02d:%02d", min, sec));
             }
 
             @Override
@@ -96,59 +96,67 @@ public class MainActivity extends AppCompatActivity {
 
         if (correctAnswer) {
             mp = MediaPlayer.create(this, R.raw.right);
-            mp.start();
-            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    generateQuestion();
-                }
-            });
             bonus += 11;
             score += 100 + bonus;
             scoreText.setText("Score: " + score);
             resultText.setText("Skrrra !");
         } else {
             mp = MediaPlayer.create(this, R.raw.wrong);
-            mp.start();
-            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    generateQuestion();
-                }
-            });
             bonus = -11;
             resultText.setText("Math's not Hot !");
         }
-        correctButton.setText("Correct");
+        disablingButtons();
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                generateQuestion();
+                enablingButtons();
+            }
+        });
     }
 
     public void checkIfFalse(View v) {
         if (!correctAnswer) {
             mp = MediaPlayer.create(this, R.raw.right);
-            mp.start();
-            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    generateQuestion();
-                }
-            });
             bonus += 11;
             score += 100 + bonus;
             scoreText.setText("Score: " + score);
             resultText.setText("Skrrra");
         } else {
             mp = MediaPlayer.create(this, R.raw.wrong);
-            mp.start();
-            mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mediaPlayer) {
-                    generateQuestion();
-                }
-            });
             bonus = -11;
             resultText.setText("Math's not Hot !");
         }
-        wrongButton.setText("Wrong");
+        disablingButtons();
+        mp.start();
+        mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                generateQuestion();
+                enablingButtons();
+            }
+        });
+    }
+
+    public void disablingButtons() {
+        correctButton.setOnClickListener(null);
+        wrongButton.setOnClickListener(null);
+    }
+
+    public void enablingButtons() {
+        correctButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkIfTrue(view);
+            }
+        });
+        wrongButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkIfFalse(view);
+            }
+        });
     }
 
     public void endOfGame() {
@@ -174,7 +182,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void restart() {
-
-    }
 }

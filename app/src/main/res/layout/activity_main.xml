@@ -1,42 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#082543"
     tools:context="com.example.oussama.myapp.MainActivity">
 
-    <TextView
-        android:id="@+id/question"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:text="question"
-        android:textAlignment="center"
-        android:textColor="#FFF191"
-        android:textSize="28sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/resultText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="260dp"
-        android:text="Result"
-        android:textAlignment="center"
-        android:textColor="#FFF191"
-        android:textSize="28sp"
-        android:textStyle="bold" />
-
     <Button
         android:id="@+id/wrongButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="420dp"
+        android:layout_x="92dp"
+        android:layout_y="404dp"
         android:backgroundTint="#CC6758"
         android:onClick="checkIfFalse"
-        android:text="Wrong"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="420dp" />
+        android:text="Wrong" />
 
     <Button
         android:id="@+id/correctButton"
@@ -44,33 +24,12 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="220dp"
         android:layout_marginTop="420dp"
+        android:layout_x="209dp"
+        android:layout_y="405dp"
         android:backgroundTint="#33AE53"
         android:onClick="checkIfTrue"
         android:text="Correct"
         android:textColor="#FFFFFF" />
-
-    <TextView
-        android:id="@+id/score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Score: 0"
-        android:textAlignment="center"
-        android:textColor="#FFF191"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginTop="17dp" />
-
-    <TextView
-        android:id="@+id/clockText"
-        android:layout_width="56dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="300dp"
-        android:layout_marginTop="19dp"
-        android:text="00:00"
-        android:textAlignment="center"
-        android:textColor="#FFF191"
-        android:textSize="18sp"
-        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/title"
@@ -78,10 +37,65 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="80dp"
+        android:layout_x="57dp"
+        android:layout_y="95dp"
         android:text="Click the correct Choice !"
         android:textAlignment="center"
         android:textColor="#FFF191"
         android:textSize="24sp"
         android:textStyle="bold" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:layout_x="7dp"
+        android:layout_y="21dp"
+        android:text="Score: 0"
+        android:textAlignment="center"
+        android:textColor="#FFF191"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/clockText"
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="19dp"
+        android:layout_x="303dp"
+        android:layout_y="24dp"
+        android:text="00:00"
+        android:textAlignment="center"
+        android:textColor="#FFF191"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:layout_x="2dp"
+        android:layout_y="305dp"
+        android:text="Result"
+        android:textAlignment="center"
+        android:textColor="#FFF191"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:layout_x="0dp"
+        android:layout_y="198dp"
+        android:text="question"
+        android:textAlignment="center"
+        android:textColor="#FFF191"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+</AbsoluteLayout>
