@@ -58,7 +58,7 @@
             android:textColor="@color/colorAccent"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:buttonTint="@color/colorAccent"
+            android:buttonTint="@color/colorAccent"
             android:onClick="sound"/>
     </RelativeLayout>
 

@@ -1,4 +1,4 @@
-package com.example.oussama.myapp;
+package com.example.oussama.JetMath;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

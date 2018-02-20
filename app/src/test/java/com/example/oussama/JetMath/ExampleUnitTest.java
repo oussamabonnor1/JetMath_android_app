@@ -1,4 +1,4 @@
-package com.example.oussama.myapp;
+package com.example.oussama.JetMath;
 
 import org.junit.Test;
 

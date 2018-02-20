@@ -1,6 +1,5 @@
-package com.example.oussama.myapp;
+package com.example.oussama.JetMath;
 
-import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
@@ -119,11 +118,11 @@ public class MainActivity extends AppCompatActivity {
             bonus += 11;
             score += 100 + bonus;
             scoreText.setText("Score: " + score);
-            resultText.setText("Skrrra !");
+            resultText.setText("Correct!");
         } else {
             mp = MediaPlayer.create(this, R.raw.wrong);
             bonus = -11;
-            resultText.setText("Math's not Hot !");
+            resultText.setText("Wrong...");
         }
         disablingButtons();
         if (sound) {
@@ -146,11 +145,11 @@ public class MainActivity extends AppCompatActivity {
             bonus += 11;
             score += 100 + bonus;
             scoreText.setText("Score: " + score);
-            resultText.setText("Skrrra");
+            resultText.setText("Correct!");
         } else {
             mp = MediaPlayer.create(this, R.raw.wrong);
             bonus = -11;
-            resultText.setText("Math's not Hot !");
+            resultText.setText("Wrong...");
         }
         disablingButtons();
         if (sound) {
