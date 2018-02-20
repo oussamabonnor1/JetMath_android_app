@@ -114,13 +114,13 @@ public class MainActivity extends AppCompatActivity {
     public void checkIfTrue(View v) {
 
         if (correctAnswer) {
-            mp = MediaPlayer.create(this, R.raw.right);
+            mp = MediaPlayer.create(this, R.raw.correctsound);
             bonus += 11;
             score += 100 + bonus;
             scoreText.setText("Score: " + score);
             resultText.setText("Correct!");
         } else {
-            mp = MediaPlayer.create(this, R.raw.wrong);
+            mp = MediaPlayer.create(this, R.raw.wrongsound);
             bonus = -11;
             resultText.setText("Wrong...");
         }
@@ -141,13 +141,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void checkIfFalse(View v) {
         if (!correctAnswer) {
-            mp = MediaPlayer.create(this, R.raw.right);
+            mp = MediaPlayer.create(this, R.raw.correctsound);
             bonus += 11;
             score += 100 + bonus;
             scoreText.setText("Score: " + score);
             resultText.setText("Correct!");
         } else {
-            mp = MediaPlayer.create(this, R.raw.wrong);
+            mp = MediaPlayer.create(this, R.raw.wrongsound);
             bonus = -11;
             resultText.setText("Wrong...");
         }
