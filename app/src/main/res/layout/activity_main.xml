@@ -18,7 +18,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:progressDrawable="@drawable/circular"
-            android:secondaryProgress="100"/>
+            android:secondaryProgress="6000"
+            android:progress="1500"
+            android:max="6000"/>
 
         <TextView
             android:id="@+id/resultText"

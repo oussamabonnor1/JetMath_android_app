@@ -45,11 +45,10 @@ public class MainActivity extends AppCompatActivity {
         score = 0;
         bonus = -11;
 
-        new CountDownTimer(60000, 1000) {
+        new CountDownTimer(60000, 10) {
             @Override
             public void onTick(long l) {
-
-                progressBar.setProgress((int) l / 1000);
+                progressBar.setProgress((int) l / 10);
             }
 
             @Override
