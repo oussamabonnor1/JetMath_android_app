@@ -18,31 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:progressDrawable="@drawable/circular"
-            android:progress="10"
             android:secondaryProgress="100"/>
 
         <TextView
             android:id="@+id/resultText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/question"
             android:layout_centerInParent="true"
             android:text="Result"
-            android:textAlignment="center"
-            android:textColor="#F4F4F4"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/score"
-            android:layout_marginTop="85dp"
-            android:paddingBottom="40dp"
-            android:text="question"
             android:textAlignment="center"
             android:textColor="#F4F4F4"
             android:textSize="28sp"
