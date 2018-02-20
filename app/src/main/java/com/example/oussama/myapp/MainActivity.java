@@ -6,7 +6,6 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -15,7 +14,6 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    AbsoluteLayout myLayout;
     TextView title;
     TextView question;
     TextView resultText;
@@ -36,12 +34,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myLayout = (AbsoluteLayout) findViewById(R.id.myLayout);
         title = (TextView) findViewById(R.id.title);
         question = (TextView) findViewById(R.id.question);
         resultText = (TextView) findViewById(R.id.resultText);
         scoreText = (TextView) findViewById(R.id.score);
-        clockText = (TextView) findViewById(R.id.clockText);
+        //clockText = (TextView) findViewById(R.id.clockText);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         correctButton = (Button) findViewById(R.id.correctButton);
         wrongButton = (Button) findViewById(R.id.wrongButton);
@@ -62,13 +59,14 @@ public class MainActivity extends AppCompatActivity {
                 endOfGame();
             }
         }.start();
-        countDownTimer = new CountDownTimer(6000,1000){
+        countDownTimer = new CountDownTimer(6000, 1000) {
             @Override
             public void onTick(long l) {
-                int min = (int) l/1000/60;
-                int sec=  (int) l/1000%60;
-                clockText.setText(String.format("%02d:%02d",min,sec));
+                int min = (int) l / 1000 / 60;
+                int sec = (int) l / 1000 % 60;
+                //clockText.setText(String.format("%02d:%02d", min, sec));
             }
+
             @Override
             public void onFinish() {
                 generateQuestion();
@@ -78,43 +76,44 @@ public class MainActivity extends AppCompatActivity {
         generateQuestion();
     }
 
-    public void generateQuestion() {
-        String color = makeRandomColor();
-        myLayout.setBackgroundColor(Color.parseColor(color));
-        int firstNum = new Random().nextInt(100);
-        int secondNum = new Random().nextInt(100);
-        int operation = new Random().nextInt(4);
-        correctAnswer = new Random().nextBoolean();
 
-        String s = "Start !";
-        switch (operation) {
-            case 0:
-                result = (firstNum + secondNum);
-                s = firstNum + " + " + secondNum + " =";
-                break;
-            case 1:
-                result = firstNum - secondNum;
-                s = firstNum + " - " + secondNum + " =";
-                break;
-            case 2:
-                result = firstNum * secondNum;
-                s = firstNum + " x " + secondNum + " =";
-                break;
-            case 3:
-                result = (float) firstNum / secondNum;
-                s = firstNum + " / " + secondNum + " =";
-                break;
-        }
-        question.setText(s);
-        if (!correctAnswer) {
-            int difference = new Random().nextInt(10);
-            boolean negative = new Random().nextBoolean();
-            if (negative) result -= difference;
-            else result += difference;
-        }
-        if (operation == 3) resultText.setText(String.format("%.1f", result));
-        else resultText.setText("" + (int) result);
-    }
+     public void generateQuestion() {
+         String color = makeRandomColor();
+         //myLayout.setBackgroundColor(Color.parseColor(color));
+         int firstNum = new Random().nextInt(100);
+         int secondNum = new Random().nextInt(100);
+         int operation = new Random().nextInt(4);
+         correctAnswer = new Random().nextBoolean();
+
+         String s = "Start !";
+         switch (operation) {
+             case 0:
+                 result = (firstNum + secondNum);
+                 s = firstNum + " + " + secondNum + " =";
+                 break;
+             case 1:
+                 result = firstNum - secondNum;
+                 s = firstNum + " - " + secondNum + " =";
+                 break;
+             case 2:
+                 result = firstNum * secondNum;
+                 s = firstNum + " x " + secondNum + " =";
+                 break;
+             case 3:
+                 result = (float) firstNum / secondNum;
+                 s = firstNum + " / " + secondNum + " =";
+                 break;
+         }
+         question.setText(s);
+         if (!correctAnswer) {
+             int difference = new Random().nextInt(10);
+             boolean negative = new Random().nextBoolean();
+             if (negative) result -= difference;
+             else result += difference;
+         }
+         if (operation == 3) resultText.setText(String.format("%.1f", result));
+         else resultText.setText("" + (int) result);
+     }
 
     public void checkIfTrue(View v) {
 
@@ -189,6 +188,7 @@ public class MainActivity extends AppCompatActivity {
         resultText.setText("");
         question.setText("");
         clockText.setText("");
+        countDownTimer = null;
         correctButton.setText("Restart");
         correctButton.setOnClickListener(new View.OnClickListener() {
             @Override
