@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -14,10 +15,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView title;
     TextView resultText;
     TextView scoreText;
-    TextView clockText;
     ProgressBar progressBar;
     Button correctButton;
     Button wrongButton;
@@ -28,15 +27,17 @@ public class MainActivity extends AppCompatActivity {
     int bonus;
     boolean correctAnswer;
     boolean next;
+    boolean sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        title = (TextView) findViewById(R.id.title);
         resultText = (TextView) findViewById(R.id.resultText);
         scoreText = (TextView) findViewById(R.id.score);
-        //clockText = (TextView) findViewById(R.id.clockText);
+        CheckBox checkBox = (CheckBox) findViewById(R.id.checkbox);
+        checkBox.setChecked(true);
+        sound = checkBox.isChecked();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         correctButton = (Button) findViewById(R.id.correctButton);
         wrongButton = (Button) findViewById(R.id.wrongButton);
@@ -125,6 +126,10 @@ public class MainActivity extends AppCompatActivity {
             resultText.setText("Math's not Hot !");
         }
         disablingButtons();
+        if (sound) {
+            mp.setVolume(1, 1);
+        } else
+            mp.setVolume(0, 0);
         mp.start();
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
@@ -148,6 +153,10 @@ public class MainActivity extends AppCompatActivity {
             resultText.setText("Math's not Hot !");
         }
         disablingButtons();
+        if (sound) {
+            mp.setVolume(1, 1);
+        } else
+            mp.setVolume(0, 0);
         mp.start();
         mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
@@ -156,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 enablingButtons();
             }
         });
+
     }
 
     public void disablingButtons() {
@@ -179,11 +189,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void endOfGame() {
-        title.setText("BOOM Game Over !\n Score: " + score);
+        resultText.setText("Score: " + score);
         scoreText.setText("");
-        resultText.setText("");
-        clockText.setText("");
+        countDownTimer.cancel();
         countDownTimer = null;
+
         correctButton.setText("Restart");
         correctButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,4 +225,7 @@ public class MainActivity extends AppCompatActivity {
         return color;
     }
 
+    public void sound(View v) {
+        sound = !sound;
+    }
 }

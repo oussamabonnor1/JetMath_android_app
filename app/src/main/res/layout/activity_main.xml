@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -17,10 +18,10 @@
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:progressDrawable="@drawable/circular"
-            android:secondaryProgress="6000"
+            android:max="6000"
             android:progress="1500"
-            android:max="6000"/>
+            android:progressDrawable="@drawable/circular"
+            android:secondaryProgress="6000" />
 
         <TextView
             android:id="@+id/resultText"
@@ -45,6 +46,20 @@
             android:textColor="#FFFFFF"
             android:textSize="18sp"
             android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/score"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:text="Sound"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:buttonTint="@color/colorAccent"
+            android:onClick="sound"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -75,55 +90,5 @@
             android:onClick="checkIfFalse"
             android:text="Wrong" />
     </LinearLayout>
-
-    <!--
-
-     <LinearLayout
-         android:layout_height="wrap_content"
-     android:layout_width="match_parent">
-
-     </LinearLayout>
-     <TextView
-         android:id="@+id/clockText"
-         android:layout_width="56dp"
-         android:layout_height="wrap_content"
-         android:layout_marginLeft="300dp"
-         android:layout_marginTop="19dp"
-         android:layout_x="167dp"
-         android:layout_y="385dp"
-         android:text="00:00"
-         android:textAlignment="center"
-         android:textColor="#FFF191"
-         android:textSize="18sp"
-         android:textStyle="bold" />
-
-     <TextView
-         android:id="@+id/title"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_marginLeft="50dp"
-         android:layout_marginTop="80dp"
-         android:layout_x="57dp"
-         android:layout_y="125dp"
-         android:text="Click the correct Choice !"
-         android:textAlignment="center"
-         android:textColor="#FFF191"
-         android:textSize="24sp"
-         android:textStyle="bold" />
-
-
-
-     <ProgressBar
-         android:id="@+id/progressBar"
-         style="?android:attr/progressBarStyleHorizontal"
-         android:layout_width="275dp"
-         android:layout_height="wrap_content"
-         android:layout_x="59dp"
-         android:layout_y="71dp"
-         android:indeterminate="false"
-         android:max="60"
-         android:progress="0"
-         android:progressTint="#33AE53"/>
-         -->
 
 </LinearLayout>
